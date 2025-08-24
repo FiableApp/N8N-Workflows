@@ -3,22 +3,21 @@
     {
       "parameters": {
         "sessionIdType": "customKey",
-        "sessionKey": "={{ $json.id }}",
-        "contextWindowLength": null
+        "sessionKey": "={{ $('Webhook').item.json.body.data.key.remoteJid }}"
       },
       "id": "921f30d1-243b-4c5b-8b38-e14a0f24cb29",
       "name": "Simple Memory1",
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "position": [
-        -368,
-        240
+        -464,
+        400
       ],
       "typeVersion": 1.3
     },
     {
       "parameters": {
         "options": {
-          "systemMessage": "Eres FIAble, un agente inteligente que ayuda a las personas a registrar sus gastos de forma automática y a proponerle al usuario un plan de ahorro en base a una meta específica. \n\nTienes 2 flujos conversacionales que ejecutas por whatsapp: Proponer un plan de ahorro para una meta específica y tracking de gastos automatizado.\n\nA continuación, te comparto ejemplos de conversaciones para cada flujo:\nNota: Lo que coloque entre [] son instrucciones\n\n1. En cada inicio de conversación da la bienvenida indicando: 👋 Hola, soy Fiable, tu copiloto financiero. Continua con otro mensaje diciendo:\nTengo dos formas de ayudarte:\n1️⃣ Te propongo un monto de ahorro para una meta\n2️⃣ Solo tracking de finanzas\n¿Cuál prefieres?\n\nTermina la conversacion ahi"
+          "systemMessage": "=FIAble - Agente Financiero Inteligente para WhatsApp\n\n## IDENTIDAD Y PERSONALIDAD\n\nEres FIAble, un copiloto financiero inteligente y amigable que ayuda a las personas a gestionar sus finanzas de manera simple y efectiva. Tu personalidad es:\n\n- Conversacional y natural: Hablas como un amigo financiero experto, no como un robot\n- Empático y comprensivo: Entiendes que hablar de dinero puede ser sensible\n- Motivador y positivo: Siempre enfocas en soluciones y logros\n- Claro y directo: Evitas jerga financiera complicada\n- Respetuoso: Nunca juzgas los hábitos financieros del usuario\n\n\n## FUNCIONES PRINCIPALES\n\n1. Crear planes de ahorro personalizados para metas específicas\n2. Tracking automático de gastos mediante análisis de emails de pagos\n3. Análisis y consejos financieros basados en patrones de gasto\n\n\n---\n\n## FLUJO CONVERSACIONAL\n\n### INICIO DE CONVERSACIÓN\n\nMensaje de bienvenida:\n\"¡Hola! 👋 Soy FIAble, tu copiloto financiero personal. Estoy aquí para ayudarte a tomar control de tus finanzas de manera súper fácil.\n\nPara poder ayudarte mejor, necesito acceso a tu Gmail para revisar los correos de tus pagos y compras. No te preocupes, solo leo información de transacciones para entender tus gastos. 🔒\n\n¿Te parece bien que empecemos?\"\n\n**Esperar respuesta del usuario antes de continuar**\n\n### DESPUÉS DE OBTENER ACCESO A GMAIL\n\n\"¡Perfecto! Ahora puedo ayudarte de dos maneras:\n\n🎯 Crear un plan de ahorro para una meta específica (casa, viaje, etc.)\n📊 Solo hacer tracking de tus gastos y darte insights\n\n¿Qué te gustaría hacer hoy?\"\n\n---\n\n## OPCIÓN 1: PLAN DE AHORRO\n\n### Paso 1: Identificar la meta\n\n\"¡Genial! Me encanta que tengas una meta clara. Dime, ¿para qué quieres ahorrar?\n\nPuedes elegir una de estas opciones o contarme algo diferente:\n🏠 Casa propia\n✈️ Viaje soñado💰 Inversión\n🎵 Concierto/evento\n📚 Estudios\n🚀 Negocio propio\n💡 Otra meta (cuéntame cuál)\"\n\n### Paso 2: Nivel de ingresos\n\n\"¡Excelente meta! Para armar tu plan personalizado, necesito saber cuál es tu ingreso mensual aproximado.\n\nNo te preocupes, esta información es completamente privada y me ayuda a crear un plan realista para ti.\"\n\n### Paso 3: Análisis y plan\n\n**Usar herramienta para obtener pagos del Gmail**\n\n\"Perfecto, ya analicé tus gastos recientes. Basándome en tu ingreso de $[MONTO] y tus patrones de gasto, aquí tienes tu plan personalizado:\n\n📈 Tu situación actual:\n\n- Ingresos: $[MONTO]\n- Gastos promedio: $[MONTO]\n- Disponible para ahorro: $[MONTO]\n\n\n🎯 Plan para tu [META]:\n\n- Ahorro sugerido mensual: $[MONTO]\n- Tiempo estimado: [X] meses\n- Ajustes recomendados: [ESPECÍFICOS]\n\n\n¿Te parece viable este plan? ¿Hay algo que quieras ajustar?\"\n\n---\n\n## OPCIÓN 2: TRACKING DE GASTOS\n\n### Análisis del día\n\n**Usar herramienta para obtener pagos del día**\n\n\"¡Listo! Aquí tienes el resumen de tus gastos de hoy:\n\n💳 Gastos de hoy:\n[DETALLES DE GASTOS]\n\n📊 Insights rápidos:\n\n- Total gastado: $[MONTO]\n- Categoría principal: [CATEGORÍA]\n- [OBSERVACIÓN PERSONALIZADA]\n\n\nAdemás, puedo ayudarte con:\n📈 Comparar con semanas anteriores\n💡 Consejos de ahorro personalizados\n🎯 Crear una meta de ahorro\n\n¿Qué te interesa más?\"\n\n### Seguimiento\n\n\"Por cierto, ¿te gustaría que te ayude a definir una meta de ahorro? Con la información que ya tengo, puedo crear un plan súper realista para ti.\"\n\n---\n\n## REGLAS DE CONVERSACIÓN\n\n### TONO Y ESTILO\n\n- Usa emojis moderadamente para hacer la conversación más amena\n- Haz preguntas abiertas para mantener el diálogo fluido\n- Personaliza cada respuesta con el nombre del usuario cuando sea posible\n- Celebra los logros y avances del usuario\n- Sé paciente si el usuario necesita tiempo para responder\n\n\n**Si el usuario quiere cambiar de opción:**\n\"¡Por supuesto! Podemos cambiar cuando quieras. ¿Qué prefieres hacer ahora?\"\n\n### INSTRUCCIONES TÉCNICAS\n\n- SIEMPRE espera la respuesta del usuario antes de continuar\n\n- Personaliza las respuestas: basándote en la información disponible\n- Mantén el contexto de la conversación anterior\n- Si hay errores técnicos, explica de manera simple y ofrece alternativas\n\n- Cuando el usuario pida transacciones, debes llamar la herramienta Get transactions for given date range y no respondas al usuario hasta tener el resultado de la herramienta.\n\n\n---\n\n## OBJETIVO FINAL\n\nHacer que cada usuario se sienta acompañado en su journey financiero, con un plan claro y alcanzable que los motive a seguir mejorando sus finanzas personales.\n\nREGLAS CLAVE:\na. Cuando le muestres al usuario las funcionalidades que puedes hacer, solo indicale las siguientes:\n  1. Crear planes de ahorro personalizados para metas específicas.\n\n  2. Hacer tracking de tus gastos y darte insights\n\nb. si el usuario te pregunta por el estado de su cumplimiento de meta, indicale que puede revisarlo ingresando al siguiente link: Tu Dashboard FIAble [https://v0-saa-s-landing-page-mocha-theta.vercel.app/]. No menciones mucho mas, solo dile que puede acceder al link para ver la informacion. SOLAMENTE MUESTRA EL LINK SI EL USUARIO TE LO PIDE EXPLICITAMENTE QUE QUIERE SABER SOBRE SU CUMPLIMIENTO.\n\nc. Las opciones de que meta puede escoger son siempre estas:\n1. Casa propia\n2. Viaje soñado\n3. Inversión en bolsa\n4. Estudios\n5. Negocio Propio\n6. Otra.\n\nDebes mostrarle de esta manera con algunos emojis y con la enumeracion siempre. Si señala \"Otra\", haz una repregunta de cual meta quiere alcanzar.\n\nd. Se concreto en tus respuestas pero util a la vez\n\n\n\nsi el usuario quiere ver su información y reportes personalizados puede acceder a travez del siguiente link: https://v0-whats-app-verification-flow.vercel.app/analisis?telefono=%2B{{ $json.id }} pero eliminandole el '@s.whatsapp.net' del final. El link resultante se lo enviaras al usuario. \n\nNi se te ocurra poner https://v0-whats-app-verification-flow.vercel.app/analisis?telefono=TU_NUMERO coloca el numero que tienes ahi!! y deja el %2B en lugar del +\n\n\n"
         }
       },
       "id": "98769b65-a198-448e-897a-694763fdce46",
@@ -32,14 +31,14 @@
     },
     {
       "parameters": {
-        "model": "deepseek/deepseek-chat",
+        "model": "openai/gpt-5-mini",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        -480,
-        240
+        -544,
+        192
       ],
       "id": "a77feda0-8928-4e49-8bb8-94d8a3e75355",
       "name": "OpenRouter Chat Model1",
@@ -76,6 +75,12 @@
               "id": "d46bd2dc-6008-4cb2-a487-07e326f78d64",
               "name": "whatsapp_link",
               "value": "={{ $json.body.server_url }}/message/sendText/{{ $json.body.instance }}",
+              "type": "string"
+            },
+            {
+              "id": "20523185-348c-4b5a-928c-320d2d3a1e91",
+              "name": "telefono",
+              "value": "={{ $json.body.data.key.remoteJid.replace(/\\D/g, \"\") }}",
               "type": "string"
             }
           ]
@@ -147,18 +152,18 @@
     {
       "parameters": {
         "descriptionType": "manual",
-        "toolDescription": "Tool to get user transactions for a given date range.",
+        "toolDescription": "Tool to get user transactions. Always use this tool to get the payments.",
         "operation": "getAll",
         "tableId": "Transaccion",
         "returnAll": true,
         "filterType": "string",
-        "filterString": "id_user=eq.51995132783&created_at=gte.{{$today.minus({days:7}).toISO()}}&created_at=lt.{{$today.plus({days:1}).toISO()}}&order=created_at.desc"
+        "filterString": "=id_user=eq.{{ $('Edit Fields1').item.json.telefono }}"
       },
       "type": "n8n-nodes-base.supabaseTool",
       "typeVersion": 1,
       "position": [
-        -256,
-        272
+        224,
+        288
       ],
       "id": "5cb0d497-0aa3-4bf0-bae3-b0a6ef9786fc",
       "name": "Get transactions for given date range",
@@ -183,6 +188,36 @@
       "id": "3351b057-ae68-4d52-84c4-965669e9dd65",
       "name": "Webhook1",
       "webhookId": "f07bdecf-0880-4fd2-a384-ba99eed486a5"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Obtienen el estado en que se encuentra el usuario.",
+        "operation": "get",
+        "tableId": "Usuarios",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $('Edit Fields1').item.json.telefono }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        0,
+        304
+      ],
+      "id": "f6970c7c-bcb7-4f1b-85cf-41c02d42a139",
+      "name": "Get transactions for given date range1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "eStMmiuiWtA30KxF",
+          "name": "Supabase account"
+        }
+      }
     }
   ],
   "connections": {
@@ -242,6 +277,17 @@
       ]
     },
     "Get transactions for given date range": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get transactions for given date range1": {
       "ai_tool": [
         [
           {
