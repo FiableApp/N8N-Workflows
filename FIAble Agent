@@ -6,27 +6,27 @@
         "sessionKey": "={{ $json.id }}",
         "contextWindowLength": null
       },
-      "id": "8891cf3f-eda1-42c9-82c8-65a20c709bfb",
+      "id": "921f30d1-243b-4c5b-8b38-e14a0f24cb29",
       "name": "Simple Memory1",
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "position": [
-        1296,
-        304
+        -368,
+        240
       ],
       "typeVersion": 1.3
     },
     {
       "parameters": {
         "options": {
-          "systemMessage": "Eres FIAble, un agente inteligente que ayuda a las personas a registrar sus gastos de forma automática y a proponerle al usuario un plan de ahorro en base a una meta específica. \n\nTienes 2 flujos conversacionales que ejecutas por whatsapp: Proponer un plan de ahorro para una meta específica y tracking de gastos automatizado.\n\nA continuación, te comparto ejemplos de conversaciones para cada flujo:\nNota: Lo que coloque entre [] son instrucciones\n\n1. En cada inicio de conversación da la bienvenida indicando: 👋 Hola, soy Fiable, tu copiloto financiero. Continua con otro mensaje diciendo:\nTengo dos formas de ayudarte:\n1️⃣ Te propongo un monto de ahorro para una meta\n2️⃣ Solo tracking de finanzas\n¿Cuál prefieres?"
+          "systemMessage": "Eres FIAble, un agente inteligente que ayuda a las personas a registrar sus gastos de forma automática y a proponerle al usuario un plan de ahorro en base a una meta específica. \n\nTienes 2 flujos conversacionales que ejecutas por whatsapp: Proponer un plan de ahorro para una meta específica y tracking de gastos automatizado.\n\nA continuación, te comparto ejemplos de conversaciones para cada flujo:\nNota: Lo que coloque entre [] son instrucciones\n\n1. En cada inicio de conversación da la bienvenida indicando: 👋 Hola, soy Fiable, tu copiloto financiero. Continua con otro mensaje diciendo:\nTengo dos formas de ayudarte:\n1️⃣ Te propongo un monto de ahorro para una meta\n2️⃣ Solo tracking de finanzas\n¿Cuál prefieres?\n\nTermina la conversacion ahi"
         }
       },
-      "id": "78eb51ab-675f-46e0-a992-18e9b9c9f805",
+      "id": "98769b65-a198-448e-897a-694763fdce46",
       "name": "AI Agent1",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "position": [
-        1312,
-        96
+        -448,
+        16
       ],
       "typeVersion": 1.8
     },
@@ -38,40 +38,15 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        1184,
-        304
+        -480,
+        240
       ],
-      "id": "90f438e8-39e7-499c-b0a5-10d5e4821810",
+      "id": "a77feda0-8928-4e49-8bb8-94d8a3e75355",
       "name": "OpenRouter Chat Model1",
       "credentials": {
         "openRouterApi": {
           "id": "PaEzRV01MldfAMhZ",
           "name": "OpenRouter account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "descriptionType": "manual",
-        "toolDescription": "Get all user transactions within a dataframe",
-        "operation": "getAll",
-        "tableId": "Transaccion",
-        "returnAll": true,
-        "filterType": "string",
-        "filterString": "id_user=eq.51995132783"
-      },
-      "type": "n8n-nodes-base.supabaseTool",
-      "typeVersion": 1,
-      "position": [
-        1408,
-        336
-      ],
-      "id": "edbd104a-64c5-45a9-bd08-eb2bd636094f",
-      "name": "Get many rows in Supabase",
-      "credentials": {
-        "supabaseApi": {
-          "id": "eStMmiuiWtA30KxF",
-          "name": "Supabase account"
         }
       }
     },
@@ -110,10 +85,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        928,
-        160
+        -928,
+        80
       ],
-      "id": "52260b3f-c15d-4d0b-b695-dc3ba84ae483",
+      "id": "8f971ec4-e946-41af-845d-cd073615a986",
       "name": "Edit Fields1"
     },
     {
@@ -147,10 +122,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1664,
-        64
+        0,
+        0
       ],
-      "id": "962bc7e1-0d7e-4784-b16a-741c2ea46169",
+      "id": "2431c63c-3151-4d8a-b117-2db01937fca4",
       "name": "HTTP Request"
     },
     {
@@ -162,51 +137,52 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        704,
-        160
+        -1152,
+        80
       ],
-      "id": "de089753-67ab-4944-a924-bb85d3f3e1d7",
+      "id": "5720b32c-adf0-4881-8e52-7dea6a58bfe2",
       "name": "Webhook",
       "webhookId": "f43d759c-1f95-45fb-a2ea-a6fa452bdcd6"
     },
     {
       "parameters": {
-        "rules": {
-          "values": [
-            {
-              "conditions": {
-                "options": {
-                  "caseSensitive": true,
-                  "leftValue": "",
-                  "typeValidation": "strict",
-                  "version": 2
-                },
-                "conditions": [
-                  {
-                    "leftValue": "",
-                    "rightValue": "",
-                    "operator": {
-                      "type": "string",
-                      "operation": "equals"
-                    },
-                    "id": "9fdeb11c-5832-45cc-8fd2-343d1632a6b2"
-                  }
-                ],
-                "combinator": "and"
-              }
-            }
-          ]
-        },
+        "descriptionType": "manual",
+        "toolDescription": "Tool to get user transactions for a given date range.",
+        "operation": "getAll",
+        "tableId": "Transaccion",
+        "returnAll": true,
+        "filterType": "string",
+        "filterString": "id_user=eq.51995132783&created_at=gte.{{$today.minus({days:7}).toISO()}}&created_at=lt.{{$today.plus({days:1}).toISO()}}&order=created_at.desc"
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        272
+      ],
+      "id": "5cb0d497-0aa3-4bf0-bae3-b0a6ef9786fc",
+      "name": "Get transactions for given date range",
+      "credentials": {
+        "supabaseApi": {
+          "id": "eStMmiuiWtA30KxF",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "path": "f07bdecf-0880-4fd2-a384-ba99eed486a5",
         "options": {}
       },
-      "type": "n8n-nodes-base.switch",
-      "typeVersion": 3.2,
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
       "position": [
-        864,
-        368
+        -720,
+        64
       ],
-      "id": "7ed9a876-cd6e-4020-91e2-4e32be963536",
-      "name": "Switch"
+      "id": "3351b057-ae68-4d52-84c4-965669e9dd65",
+      "name": "Webhook1",
+      "webhookId": "f07bdecf-0880-4fd2-a384-ba99eed486a5"
     }
   ],
   "connections": {
@@ -243,17 +219,6 @@
         ]
       ]
     },
-    "Get many rows in Supabase": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent1",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Edit Fields1": {
       "main": [
         [
@@ -275,11 +240,21 @@
           }
         ]
       ]
+    },
+    "Get transactions for given date range": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "pinData": {},
   "meta": {
-    "templateCredsSetupCompleted": true,
     "instanceId": "3c3f4021d8056d14925458b08f8eb378f9dde4a6cced5cab909c80ad0c3d06bb"
   }
 }
