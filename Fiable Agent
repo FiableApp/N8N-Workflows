@@ -1,0 +1,667 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=\n\n**FIAble - Agente Financiero Inteligente para WhatsApp**\n\n## PRINCIPIOS GENERALES\n\n* Siempre usa stickers para acercarte al usuario. **Usa la herramienta de stickers**, enviando solo la URL correspondiente.\n* Prefiere mensajes cortos y claros; evita textos largos innecesarios.\n* Siempre espera respuesta cuando corresponda.\n* Mantén un tono **conversacional, empático y motivador**, como un amigo financiero.\n\n## STICKERS Y CUÁNDO USARLOS\n\n* **Comunicación larga / explicativa:**\n\n  * [https://v0-sloth-image-hosting.vercel.app/oso-investigador.webp](https://v0-sloth-image-hosting.vercel.app/oso-investigador.webp)\n  * [https://v0-sloth-image-hosting.vercel.app/oso-investigador-2.webp](https://v0-sloth-image-hosting.vercel.app/oso-investigador-2.webp)\n* **Curiosidad / dudas:**\n\n  * [https://v0-sloth-image-hosting.vercel.app/oso-triste.webp](https://v0-sloth-image-hosting.vercel.app/oso-triste.webp)\n* **Ayuda con finanzas / ahorro:**\n\n  * [https://v0-sloth-image-hosting.vercel.app/oso-ahorrador.webp](https://v0-sloth-image-hosting.vercel.app/oso-ahorrador.webp)\n* **Saludo / bienvenida:**\n\n  * [https://v0-sloth-image-hosting.vercel.app/oso-superheroe.webp](https://v0-sloth-image-hosting.vercel.app/oso-superheroe.webp)\n\n> Para enviar los stickers, usa **solo la herramienta de stickers** con la URL correspondiente.\n\n---\n\n## IDENTIDAD Y PERSONALIDAD\n\n* Conversacional y cercano\n* Empático y comprensivo\n* Motivador y positivo\n* Claro y directo\n* Respetuoso, sin juzgar hábitos financieros\n\n---\n\n## ESCENARIOS DE CONVERSACIÓN\n\n### 1. Onboarding\n\n* Si el usuario no tiene correo registrado, **pide el correo** y registra con la herramienta.\n* Envía enlace de guía de onboarding a Google Drive usando la herramienta de envío de enlaces.\n* Siempre envía un sticker al inicio de la interacción: **[https://v0-sloth-image-hosting.vercel.app/oso-superheroe.webp](https://v0-sloth-image-hosting.vercel.app/oso-superheroe.webp)**\n\n---\n\n### 2. Crear plan de ahorro\n\n**Mensaje inicial:**\n\n```\n¡Hola! 👋 Soy FIAble, tu copiloto financiero. \nPuedo ayudarte de dos maneras:\n🎯 Crear un plan de ahorro para una meta\n📊 Solo hacer tracking de tus gastos\n¿Qué te gustaría hacer hoy?\n```\n\n* Siempre envía un sticker inicial: **[https://v0-sloth-image-hosting.vercel.app/oso-superheroe.webp](https://v0-sloth-image-hosting.vercel.app/oso-superheroe.webp)**\n\n**Preguntar meta de ahorro:**\n\n```\n¡Genial! Dime, ¿para qué quieres ahorrar?\nOpciones:\n🏠 Casa propia\n✈️ Viaje soñado\n💰 Inversión\n🎵 Concierto/evento\n📚 Estudios\n🚀 Negocio propio\n💡 Otra meta\n```\n\n* Sticker sugerido: **[https://v0-sloth-image-hosting.vercel.app/oso-triste.webp](https://v0-sloth-image-hosting.vercel.app/oso-triste.webp)** si quieres mostrar curiosidad sobre su respuesta\n\n**Preguntar ingresos:**\n\n```\n¡Perfecto! Para armar tu plan, necesito tu ingreso mensual aproximado.\n```\n\n* Sticker sugerido: **[https://v0-sloth-image-hosting.vercel.app/oso-ahorrador.webp](https://v0-sloth-image-hosting.vercel.app/oso-ahorrador.webp)**\n\n* Analiza los gastos vs ingresos y da insights prácticos para ahorrar.\n\n---\n\n### 3. Tracking de gastos\n\n**Mensaje inicial:**\n\n```\n¡Hola! 👋 Soy FIAble, tu copiloto financiero. \n¿Quieres:\n🎯 Crear un plan de ahorro\n📊 Solo tracking de gastos\n```\n\n* Sticker inicial: **[https://v0-sloth-image-hosting.vercel.app/oso-superheroe.webp](https://v0-sloth-image-hosting.vercel.app/oso-superheroe.webp)**\n\n**Reporte de gastos:**\n\n```\n¡Listo! Aquí está tu resumen de gastos de hoy:\n[usar herramientas para obtener transacciones y generar insights]\n```\n\n* Sticker sugerido: **[https://v0-sloth-image-hosting.vercel.app/oso-investigador.webp](https://v0-sloth-image-hosting.vercel.app/oso-investigador.webp)** para explicación\n* Siempre incluye link para reportes personalizados:\n\n```\nhttps://v0-whats-app-verification-flow.vercel.app/analisis?telefono=%2B{{ $json.id }} \n```\n\nimportante usa el %2B antes del numero. \n\n> No pongas TU\\_NUMERO, usa el número real del usuario eliminando '@s.whatsapp.net'.\n\n---\n\n## REGLAS IMPORTANTES\n\n1. Usa emojis de forma moderada.\n2. Siempre espera respuesta del usuario donde corresponda.\n3. Solo usa herramientas para enviar stickers, enlaces o analizar datos.\n4. Mantén siempre actualizado el **estado del usuario** y respeta su historial.\n5. Inicia conversación verificando si aplica onboarding o seguimiento.\n\n\n"
+        }
+      },
+      "id": "98769b65-a198-448e-897a-694763fdce46",
+      "name": "AI Agent1",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        -240,
+        16
+      ],
+      "typeVersion": 1.8
+    },
+    {
+      "parameters": {
+        "model": "google/gemini-2.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -688,
+        288
+      ],
+      "id": "a77feda0-8928-4e49-8bb8-94d8a3e75355",
+      "name": "OpenRouter Chat Model1",
+      "credentials": {
+        "openRouterApi": {
+          "id": "PaEzRV01MldfAMhZ",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b16853f8-76c9-433a-ba0f-135e1f9c79e0",
+              "name": "id",
+              "value": "={{ $json.body.data.key.remoteJid }}",
+              "type": "string"
+            },
+            {
+              "id": "8c998d6c-7bc9-4bfd-b102-a79d7ba412fb",
+              "name": "created_at",
+              "value": "={{ $json.body.date_time }}",
+              "type": "string"
+            },
+            {
+              "id": "ccca2dd7-7334-4b2d-ab47-43b288e9f629",
+              "name": "chatInput",
+              "value": "={{ $json.body.data.message.conversation }}",
+              "type": "string"
+            },
+            {
+              "id": "d46bd2dc-6008-4cb2-a487-07e326f78d64",
+              "name": "whatsapp_link",
+              "value": "={{ $json.body.server_url }}/message/sendText/{{ $json.body.instance }}",
+              "type": "string"
+            },
+            {
+              "id": "20523185-348c-4b5a-928c-320d2d3a1e91",
+              "name": "telefono",
+              "value": "={{ $json.body.data.key.remoteJid.replace(/\\D/g, \"\") }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -752,
+        80
+      ],
+      "id": "8f971ec4-e946-41af-845d-cd073615a986",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Edit Fields1').item.json.whatsapp_link }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $('Webhook').item.json.body.apikey }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{ $('Webhook').item.json.body.data.key.remoteJid }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.output }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "2431c63c-3151-4d8a-b117-2db01937fca4",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "f43d759c-1f95-45fb-a2ea-a6fa452bdcd6",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1248,
+        80
+      ],
+      "id": "5720b32c-adf0-4881-8e52-7dea6a58bfe2",
+      "name": "Webhook",
+      "webhookId": "f43d759c-1f95-45fb-a2ea-a6fa452bdcd6"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Tool to get user transactions. Always use this tool to get the payments.",
+        "operation": "getAll",
+        "tableId": "Transaccion",
+        "returnAll": true,
+        "filterType": "string",
+        "filterString": "=id_user=eq.{{ $('Edit Fields1').item.json.telefono }}"
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        48,
+        544
+      ],
+      "id": "5cb0d497-0aa3-4bf0-bae3-b0a6ef9786fc",
+      "name": "Get transactions for given date range",
+      "credentials": {
+        "supabaseApi": {
+          "id": "eStMmiuiWtA30KxF",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "path": "f07bdecf-0880-4fd2-a384-ba99eed486a5",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -912,
+        -144
+      ],
+      "id": "3351b057-ae68-4d52-84c4-965669e9dd65",
+      "name": "Webhook1",
+      "webhookId": "f07bdecf-0880-4fd2-a384-ba99eed486a5"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Obtienen el estado en que se encuentra el usuario.",
+        "operation": "get",
+        "tableId": "Usuarios",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $('Edit Fields1').item.json.telefono }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        -384,
+        400
+      ],
+      "id": "f6970c7c-bcb7-4f1b-85cf-41c02d42a139",
+      "name": "Obtiene estado del usuario",
+      "credentials": {
+        "supabaseApi": {
+          "id": "eStMmiuiWtA30KxF",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Añade usuario a base de datos cuando usuario no está registrado. ",
+        "tableId": "Usuarios",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "id",
+              "fieldValue": "={{ $('Edit Fields1').item.json.telefono }}"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $('Edit Fields1').item.json.created_at }}"
+            },
+            {
+              "fieldId": "Estado_descriptivo",
+              "fieldValue": "Nuevo usuario que recién conoce a Finable Fito"
+            },
+            {
+              "fieldId": "Fecha_ultima_comunicacion",
+              "fieldValue": "={{ $('Edit Fields1').item.json.created_at }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        544
+      ],
+      "id": "88b5e64a-9b5d-4afa-bacc-d3d7256d48e9",
+      "name": "crear usuario",
+      "credentials": {
+        "supabaseApi": {
+          "id": "eStMmiuiWtA30KxF",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Informa que correos tiene configurados el usuario para ser proveedores de información de los gastos financieros. ",
+        "operation": "getAll",
+        "tableId": "provedores",
+        "returnAll": true,
+        "filterType": "string",
+        "filterString": "=telefono=eq.{{ $('Edit Fields1').item.json.telefono }}"
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        192,
+        496
+      ],
+      "id": "ba2e453d-a493-443f-bbc8-896275c9f85a",
+      "name": "Obtener proveedores",
+      "credentials": {
+        "supabaseApi": {
+          "id": "eStMmiuiWtA30KxF",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Obtienen el estado en que se encuentra el usuario.",
+        "operation": "update",
+        "tableId": "Usuarios",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Edit Fields1').item.json.telefono }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "Estado_descriptivo",
+              "fieldValue": "={{ $json.output }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        -288,
+        560
+      ],
+      "id": "0c8103f7-f1b1-497c-8c7b-06ead5bedea1",
+      "name": "Cambiar estado del usuario1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "eStMmiuiWtA30KxF",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Obtiene las indicaciones para el onboarding para conectar del usuario por gmail ",
+        "authentication": "serviceAccount",
+        "operation": "get",
+        "documentURL": "https://docs.google.com/document/d/1vyR1vOHv7BebeDhXjbanbL4UkFQNb1K8o0tdpG7qRuU/edit?usp=sharing"
+      },
+      "type": "n8n-nodes-base.googleDocsTool",
+      "typeVersion": 2,
+      "position": [
+        336,
+        480
+      ],
+      "id": "53b6f163-14e6-43e3-afda-3e0d40390aa3",
+      "name": "Get a document in Google Docs",
+      "credentials": {
+        "googleApi": {
+          "id": "PLBBvAP8cX18IVhy",
+          "name": "Google Service Account account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Input: URL del sticker (ejemplo: https://v0-sloth-image-hosting.vercel.app/oso-superheroe.webp)\n\nAcción: envía el sticker al usuario por WhatsApp.\n\nOutput: confirmación de envío.\n\nReglas para FIAble:\n\nSiempre envía al menos un sticker por interacción.\n\nUsa los stickers según el contexto:\n\nSaludo: oso-superheroe.webp\n\nComunicación larga / explicativa: oso-investigador.webp o oso-investigador-2.webp\n\nCuriosidad / dudas: oso-triste.webp\n\nAyuda con finanzas / ahorro: oso-ahorrador.webp\n\nPara enviarlo, nunca escribas el sticker en el chat, solo pásale la URL a la tool SendSticker.",
+        "method": "POST",
+        "url": "https://evolution-api-production-d4f40.up.railway.app/message/sendSticker/Fiable_Staging",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "DD4D772650CB-4DFB-84FA-BD408EBE67F7"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "=+{{ $('Edit Fields1').item.json.telefono }}"
+            },
+            {
+              "name": "sticker",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters1_Value', ``, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        432,
+        272
+      ],
+      "id": "504444c1-340c-4910-a63e-835aa9df472f",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        -624,
+        -208
+      ],
+      "id": "7158cf2b-2e10-4ce7-9cf3-933097bf2a5c",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c90fad9d-12c4-4701-b047-79059229ecec",
+              "leftValue": "={{ $json.body.event }}",
+              "rightValue": "={{ 'messages.upsert' }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1040,
+        80
+      ],
+      "id": "d8d7abbd-fead-4530-bbc4-db2ae32c1ec2",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Webhook').item.json.body.data.key.remoteJid }}-"
+      },
+      "id": "921f30d1-243b-4c5b-8b38-e14a0f24cb29",
+      "name": "Simple Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "position": [
+        -544,
+        416
+      ],
+      "typeVersion": 1.3
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Asignar correo a usuario. Dado un email por el usuario.",
+        "tableId": "provedores",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "telefono",
+              "fieldValue": "={{ $('Edit Fields1').item.json.telefono }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('fieldValues1_Field_Value', ``, 'string') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        -176,
+        688
+      ],
+      "id": "66644993-cb5c-4a18-9813-c40da206315b",
+      "name": "crear usuario1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "eStMmiuiWtA30KxF",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Envia sticker a whatsapp dada una url del sticker.",
+        "method": "POST",
+        "url": "https://evolution-api-production-d4f40.up.railway.app/message/sendSticker/Fiable_Staging",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "DD4D772650CB-4DFB-84FA-BD408EBE67F7"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "=+{{ $('Edit Fields1').item.json.telefono }}"
+            },
+            {
+              "name": "sticker",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters1_Value', ``, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        576,
+        400
+      ],
+      "id": "fa2a4c81-ff1a-45e2-9354-309f93ef6d65",
+      "name": "HTTP Request2"
+    }
+  ],
+  "connections": {
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get transactions for given date range": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtiene estado del usuario": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "crear usuario": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener proveedores": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cambiar estado del usuario1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a document in Google Docs": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "crear usuario1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3c3f4021d8056d14925458b08f8eb378f9dde4a6cced5cab909c80ad0c3d06bb"
+  }
+}
