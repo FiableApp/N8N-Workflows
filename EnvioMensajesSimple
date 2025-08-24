@@ -1,0 +1,73 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "path": "enviar-mensaje",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "52cd6595-7242-48c0-8bcf-cf699bda01e5",
+      "name": "Webhook",
+      "webhookId": "4b5d1d0b-dc9f-47d3-8a44-b14e5ebe609e"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://evolution-api-production-d4f40.up.railway.app/message/sendText/Fiable_Staging",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "=DD4D772650CB-4DFB-84FA-BD408EBE67F7"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{ $json.query.telefono }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.query.mensaje }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        192,
+        0
+      ],
+      "id": "c6f1ebac-c627-43b6-ab09-5d38498cd41c",
+      "name": "HTTP Request"
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "instanceId": "3c3f4021d8056d14925458b08f8eb378f9dde4a6cced5cab909c80ad0c3d06bb"
+  }
+}
