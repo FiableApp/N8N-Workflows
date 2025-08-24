@@ -1,0 +1,89 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "filters": {}
+      },
+      "id": "d70d8c35-9137-43bc-85a1-62e755657dd9",
+      "name": "Gmail Trigger",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        -208
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "RxflB94iTOv7kucK",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "functionCode": "const body = $json[\"bodyPlain\"] || $json[\"bodyHtml\"];\nconst regex = /(https:\\/\\/mail-settings\\.google\\.com\\/mail\\/vf-[^\\s]+)/;\nconst match = body.match(regex);\nreturn match ? [{ json: { confirmLink: match[0] } }] : [];"
+      },
+      "id": "e324907d-5ce5-445f-acae-1333db1a4179",
+      "name": "Extract Confirmation Link",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        176,
+        -208
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{$json[\"confirmLink\"]}}",
+        "responseFormat": "string",
+        "options": {
+          "followRedirect": true
+        }
+      },
+      "id": "46b1b448-7649-4c65-8fda-0b90dd40abd7",
+      "name": "Click Confirmation Link",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        432,
+        -208
+      ]
+    }
+  ],
+  "connections": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Extract Confirmation Link",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Confirmation Link": {
+      "main": [
+        [
+          {
+            "node": "Click Confirmation Link",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "3c3f4021d8056d14925458b08f8eb378f9dde4a6cced5cab909c80ad0c3d06bb"
+  }
+}
